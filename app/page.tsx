@@ -9,6 +9,8 @@ import {
 	Settings,
 	UserPlus,
 	ArrowRight,
+	Building2,
+	Search,
 } from 'lucide-react';
 import { getConfig, getUsers } from '@/lib/storage';
 import { ApiConfig, CreatedUser } from '@/lib/types';
@@ -150,6 +152,32 @@ export default function DashboardPage() {
 							</p>
 						</div>
 					</Link>
+
+					<Link
+						href="/properties"
+						className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 transition-colors"
+					>
+						<Building2 className="text-indigo-600" size={24} />
+						<div>
+							<h3 className="font-medium text-gray-800">Biens immobiliers</h3>
+							<p className="text-sm text-gray-500">
+								Consulter les biens actifs
+							</p>
+						</div>
+					</Link>
+
+					<Link
+						href="/search-ads"
+						className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 transition-colors"
+					>
+						<Search className="text-indigo-600" size={24} />
+						<div>
+							<h3 className="font-medium text-gray-800">Recherches actives</h3>
+							<p className="text-sm text-gray-500">
+								Consulter les recherches
+							</p>
+						</div>
+					</Link>
 				</div>
 			</div>
 
@@ -166,6 +194,10 @@ export default function DashboardPage() {
 					<li>
 						<strong>Création</strong> : Utilisez le formulaire pour créer des
 						utilisateurs de test via l&apos;API.
+					</li>
+					<li>
+						<strong>Consultation</strong> : Parcourez les biens immobiliers et
+						les recherches actives sur la plateforme.
 					</li>
 					<li>
 						<strong>Validation</strong> : Vérifiez les erreurs retournées par
