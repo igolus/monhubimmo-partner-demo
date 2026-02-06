@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Settings, Users, UserPlus, Building2, Search, Plus, FolderOpen, SearchCheck } from 'lucide-react';
+import { Home, Settings, Users, UserPlus, Building2, Search, Plus, FolderOpen, SearchCheck, Bell } from 'lucide-react';
 
 const navItems = [
 	{ href: '/', label: 'Dashboard', icon: Home },
@@ -15,6 +15,7 @@ const navItems = [
 	{ href: '/search-ads', label: 'Recherches publiques', icon: Search },
 	{ href: '/search-ads/mine', label: 'Mes recherches (API)', icon: SearchCheck },
 	{ href: '/search-ads/create', label: 'Créer Recherche', icon: Plus },
+	{ href: '/webhooks', label: 'Webhooks', icon: Bell },
 ];
 
 export default function Sidebar() {

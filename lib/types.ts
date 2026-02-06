@@ -638,3 +638,14 @@ export interface PartnerSearchAdFilters {
 	sortBy?: string;
 	sortOrder?: string;
 }
+
+// Webhook Event types
+export interface WebhookEvent {
+	id: string;
+	event: string;
+	timestamp: string;
+	data: Record<string, unknown>;
+	receivedAt: string;
+	signature: string | null;
+	verified: boolean;
+}
