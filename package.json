@@ -2,9 +2,9 @@
 	"name": "partner-demo",
 	"version": "1.0.0",
 	"scripts": {
-		"dev-partner": "next dev -p 3002",
+		"dev-partner": "next dev -p 3101",
 		"build": "next build",
-		"start": "next start -p 3002",
+		"start": "next start -p 3101",
 		"lint": "next lint"
 	},
 	"dependencies": {

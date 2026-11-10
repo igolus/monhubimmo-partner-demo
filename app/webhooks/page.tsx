@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { CheckCircle, Copy, Trash2, ChevronDown, ChevronRight, RefreshCw } from 'lucide-react';
 import { WebhookEvent } from '@/lib/types';
 
-const WEBHOOK_URL = 'http://localhost:3002/api/webhooks/receive';
+const WEBHOOK_URL = 'http://localhost:3101/api/webhooks/receive';
 const POLL_INTERVAL = 3000;
 
 export default function WebhooksPage() {
@@ -149,9 +149,9 @@ export default function WebhooksPage() {
 						</p>
 					</div>
 					<div>
-						<p className="text-sm font-medium text-amber-800 mb-1">2. Lancer le tunnel vers le port 3002</p>
+						<p className="text-sm font-medium text-amber-800 mb-1">2. Lancer le tunnel vers le port 3101</p>
 						<code className="block px-4 py-2 bg-amber-100 rounded-md text-sm font-mono text-amber-900">
-							ngrok http 3002
+							ngrok http 3101
 						</code>
 					</div>
 					<div>

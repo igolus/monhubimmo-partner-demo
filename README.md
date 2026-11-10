@@ -22,7 +22,7 @@ npm install
 npm run dev
 ```
 
-L'application sera disponible sur http://localhost:3001
+L'application sera disponible sur http://localhost:3101 (script `npm run dev-partner`)
 
 ## Utilisation
 
