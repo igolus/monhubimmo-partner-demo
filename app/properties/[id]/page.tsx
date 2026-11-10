@@ -277,10 +277,12 @@ export default function PropertyDetailPage() {
 						Galerie ({property.galleryImages.length} photos)
 					</h2>
 					<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-						{property.galleryImages.map((url, index) => (
+						{property.galleryImages.map((image, index) => (
 							<img
 								key={index}
-								src={url}
+								/* Un bien a vous renvoie { url, key } ; un bien du
+								   catalogue public renvoie une simple chaine. */
+								src={typeof image === 'string' ? image : image.url}
 								alt={`Photo ${index + 1}`}
 								className="w-full h-32 object-cover rounded-lg"
 								onError={(e) => { e.currentTarget.style.display = 'none'; }}

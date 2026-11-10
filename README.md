@@ -12,7 +12,7 @@ Application de démonstration pour tester l'API partenaire MonHubImmo.
 ## Installation
 
 ```bash
-cd partnerDemo
+cd monhubimmo-partner-demo
 npm install
 ```
 
@@ -22,7 +22,7 @@ npm install
 npm run dev
 ```
 
-L'application sera disponible sur http://localhost:3101 (script `npm run dev-partner`)
+L'application sera disponible sur http://localhost:3101 (script `npm run dev-partner`).
 
 ## Utilisation
 
@@ -38,10 +38,38 @@ Les données sont stockées localement dans le navigateur (localStorage) :
 - `partnerDemo_config` : Configuration API (clé et URL)
 - `partnerDemo_users` : Liste des utilisateurs créés
 
+## Webhooks
+
+La route `/api/webhooks/receive` vérifie la signature des événements reçus :
+HMAC-SHA256 du **corps brut**, préfixé de `sha256=`, comparé en temps constant.
+
+Pour activer la vérification, placez le signing secret du webhook (affiché une
+seule fois, à sa création dans MonHubImmo) dans `.env.local` :
+
+```
+MHI_WEBHOOK_SECRET=votre-signing-secret
+```
+
+Sans ce secret, les événements sont reçus et affichés, mais marqués « non
+vérifiée ». La page `/webhooks` distingue trois états : signature vérifiée,
+signature présente mais non vérifiée, et absence de signature.
+
 ## API Endpoints utilisés
 
 - `GET /api/external/v1/health` : Test de connexion
-- `POST /api/external/v1/users` : Création d'utilisateur
+- `POST|GET|PUT /api/external/v1/users` : Agents
+- `POST|GET|PUT /api/external/v1/properties` : Biens
+- `POST|GET|PUT /api/external/v1/search-ads` : Recherches acquéreurs
+
+> La référence complète de l'API est `PARTNER_API.md`, téléchargeable depuis
+> `/partner/docs` sur MonHubImmo.
+
+## Clé API
+
+Depuis novembre 2026, les clés sont **hachées en base** côté serveur : une clé
+n'est lisible qu'à sa création, et toute clé émise avant ce changement ne
+s'authentifie plus. Régénérez-la depuis `/partner/api`, puis saisissez-la dans
+`/config`.
 
 ## Technologies
 

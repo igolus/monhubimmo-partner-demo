@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { CheckCircle, Copy, Trash2, ChevronDown, ChevronRight, RefreshCw } from 'lucide-react';
+import { CheckCircle, Copy, Trash2, ChevronDown, ChevronRight, RefreshCw, ShieldAlert, ShieldCheck } from 'lucide-react';
 import { WebhookEvent } from '@/lib/types';
 
 const WEBHOOK_URL = 'http://localhost:3101/api/webhooks/receive';
@@ -127,6 +127,21 @@ export default function WebhooksPage() {
 						)}
 					</button>
 				</div>
+				<p className="mt-4 text-sm text-gray-600">
+					Pour que les signatures soient <strong>vérifiées</strong>, placez le signing
+					secret du webhook (affiché une seule fois, à sa création) dans{' '}
+					<code className="px-1.5 py-0.5 bg-gray-100 rounded font-mono text-xs">
+						.env.local
+					</code>{' '}
+					:
+				</p>
+				<code className="mt-2 block px-4 py-3 bg-gray-100 rounded-md text-sm font-mono text-gray-800 select-all">
+					MHI_WEBHOOK_SECRET=votre-signing-secret
+				</code>
+				<p className="mt-2 text-xs text-gray-500">
+					Redémarrez ensuite le serveur. Sans ce secret, les événements sont reçus et
+					affichés mais restent marqués « non vérifiée ».
+				</p>
 			</div>
 
 			{/* ngrok Guide */}
@@ -220,10 +235,21 @@ export default function WebhooksPage() {
 										</span>
 									</div>
 									<div className="flex items-center gap-2">
-										{event.signature ? (
-											<span className="flex items-center gap-1 text-xs text-green-600">
-												<CheckCircle size={14} />
-												Signature présente
+										{event.verified ? (
+											<span
+												className="flex items-center gap-1 text-xs text-green-600"
+												title="HMAC-SHA256 du corps brut conforme au signing secret"
+											>
+												<ShieldCheck size={14} />
+												Signature vérifiée
+											</span>
+										) : event.signature ? (
+											<span
+												className="flex items-center gap-1 text-xs text-amber-600"
+												title="Signature reçue mais non validée : MHI_WEBHOOK_SECRET absent ou secret incorrect"
+											>
+												<ShieldAlert size={14} />
+												Signature non vérifiée
 											</span>
 										) : (
 											<span className="text-xs text-gray-400">
